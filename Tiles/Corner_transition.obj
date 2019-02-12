@@ -1,0 +1,28 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 13.02.2019 00:00:50
+
+mtllib Corner_transition.mtl
+
+#
+# object Object009
+#
+
+v  100.1046 15.4273 -38.9961
+v  111.0986 -0.0000 -31.2980
+v  118.7968 15.4273 -42.2921
+# 3 vertices
+
+vn 0.1479 0.5240 0.8388
+# 1 vertex normals
+
+vt 1.0000 0.0000 0.0000
+vt 1.0000 1.0000 0.0000
+# 2 texture coords
+
+o Object009
+g Object009
+usemtl wire_153228184
+s off
+f 1/1/1 2/2/1 3/2/1 
+# 0 polygons - 1 triangles
+

@@ -1,0 +1,31 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 13.02.2019 00:00:30
+
+mtllib Horizontal_transiton.mtl
+
+#
+# object Object006
+#
+
+v  102.3019 -0.0000 -8.3550
+v  110.0000 15.4273 -19.3490
+v  77.2339 15.4273 -42.2921
+v  69.5358 -0.0000 -31.2980
+# 4 vertices
+
+vn -0.4327 0.6564 0.6180
+vn 0.5736 0.0000 -0.8192
+vn -0.8455 0.5170 0.1334
+# 3 vertex normals
+
+vt 1.0000 0.0000 0.0000
+vt 1.0000 1.0000 0.0000
+# 2 texture coords
+
+o Object006
+g Object006
+usemtl wire_153228184
+s off
+f 1/1/1 2/1/1 3/2/2 3/2/3 4/2/1 
+# 1 polygons
+
