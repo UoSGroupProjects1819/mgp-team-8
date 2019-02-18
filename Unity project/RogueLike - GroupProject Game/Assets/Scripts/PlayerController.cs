@@ -5,7 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Room currentRoom;
-    public bool isMoving = false;
+    private bool isMoving = false;
+
+    public Stats playerStats;
+
+    private void Awake()
+    {
+        //Initialize player's stats with default values
+        playerStats = new Stats(10, 10, 10);
+    }
 
     void Update()
     {
