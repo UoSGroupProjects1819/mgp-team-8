@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5429032609186963116}
   - component: {fileID: 6087122378743416626}
   m_Layer: 5
-  m_Name: Used Objects
+  m_Name: Equipped Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5553010656845866302}
   - component: {fileID: 5553010656845866303}
   m_Layer: 5
-  m_Name: Unused Objects
+  m_Name: Looted Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
