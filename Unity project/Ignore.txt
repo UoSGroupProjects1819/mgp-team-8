@@ -1,3 +1,0 @@
-Github needs a file to initialize a folder!
-
-Please delete this after adding files in this folder
