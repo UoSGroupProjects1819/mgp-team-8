@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4482453, g: 0.49827206, b: 0.5755818, a: 1}
+  m_IndirectSpecularColor: {r: 0.4482447, g: 0.49827182, b: 0.5755813, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94285d506b231b4289d1b98a9b868ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomGrid: {fileID: 0}
 --- !u!4 &281818119
 Transform:
   m_ObjectHideFlags: 0
@@ -235,6 +236,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boundary
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185794316505142688, guid: 2609b20cbb48d504ba3666f5a6dfdcba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1185794316505142695, guid: 2609b20cbb48d504ba3666f5a6dfdcba,
         type: 3}
@@ -876,6 +882,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 960753662132347123, guid: 589cd22f5f7ded34184fde8bbe829265,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 960753662132347132, guid: 589cd22f5f7ded34184fde8bbe829265,
         type: 3}
