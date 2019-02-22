@@ -3,7 +3,13 @@ guid: c25130bdf7bb4a8438fd4cb5e421acb7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fireEnemyPrefab: {instanceID: 0}
+  - waterEnemyPrefab: {instanceID: 0}
+  - windEnemyPrefab: {instanceID: 0}
+  - earthEnemyPrefab: {instanceID: 0}
+  - lightEnemyPrefab: {instanceID: 0}
+  - darkEnemyPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

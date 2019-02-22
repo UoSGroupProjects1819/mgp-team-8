@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public Grid roomGrid;
-    //Awake is always called before any Start functions
+    public Room currentRoom;
+
     void Awake()
     {
         //Check if instance already exists
@@ -25,14 +26,6 @@ public class GameManager : MonoBehaviour
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-
-        //Call the InitGame function to initialize the first level 
-        InitGame();
-    }
-
-    //Initializes the game for each level.
-    void InitGame()
-    {
-
+        
     }
 }

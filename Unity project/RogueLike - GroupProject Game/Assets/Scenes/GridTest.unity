@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -127,7 +127,7 @@ PrefabInstance:
     - target: {fileID: 960753662132347123, guid: 589cd22f5f7ded34184fde8bbe829265,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 960753662132347132, guid: 589cd22f5f7ded34184fde8bbe829265,
         type: 3}
@@ -1831,6 +1831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomGrid: {fileID: 1313802402351875008}
+  currentRoom: {fileID: 0}
 --- !u!4 &1396720026
 Transform:
   m_ObjectHideFlags: 0
@@ -1894,7 +1895,10 @@ MonoBehaviour:
     type: 3}
   roomPrefab: {fileID: 1067708780985822638, guid: 09f429849aba0a1468083cdaa309344f,
     type: 3}
+  playerPrefab: {fileID: 960753662132347123, guid: 589cd22f5f7ded34184fde8bbe829265,
+    type: 3}
   roomParent: {fileID: 1314758648}
+  rooms: []
 --- !u!1 &2059288488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4488209770637263063, guid: c216e2b630826de42b7ee6a9fbb67008,
@@ -1913,6 +1917,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25130bdf7bb4a8438fd4cb5e421acb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  biome: 0
+  fireEnemyPrefab: {fileID: 0}
+  waterEnemyPrefab: {fileID: 0}
+  windEnemyPrefab: {fileID: 0}
+  earthEnemyPrefab: {fileID: 0}
+  lightEnemyPrefab: {fileID: 0}
+  darkEnemyPrefab: {fileID: 0}
 --- !u!1001 &1313802402351875007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1928,7 +1939,7 @@ PrefabInstance:
     - target: {fileID: 4488209770637263063, guid: c216e2b630826de42b7ee6a9fbb67008,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1694206485066937883, guid: c216e2b630826de42b7ee6a9fbb67008,
         type: 3}

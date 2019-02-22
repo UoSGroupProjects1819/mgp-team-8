@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067708780208118639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1067708780985822636}
@@ -87,3 +87,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25130bdf7bb4a8438fd4cb5e421acb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  biome: 0
+  fireEnemyPrefab: {fileID: 5894889469988038918, guid: 17c90ec7669e9a14790f9cae1546ff1e,
+    type: 3}
+  waterEnemyPrefab: {fileID: 1156518086458240765, guid: fb53d3abcc8a7704db4885492b728749,
+    type: 3}
+  windEnemyPrefab: {fileID: 8881429541779013703, guid: 37abf34cfd44a6849ad33b131101b40b,
+    type: 3}
+  earthEnemyPrefab: {fileID: 3783850632283538513, guid: 53a9eeb3ccf36bf43b9511566a821f0b,
+    type: 3}
+  lightEnemyPrefab: {fileID: 101861478378298150, guid: bf78aa85e8fa22447bdb680c7d3b68c7,
+    type: 3}
+  darkEnemyPrefab: {fileID: 4950737702432198974, guid: c9586717b8b91ca4eb39ec97e0fc2494,
+    type: 3}
