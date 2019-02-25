@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a077218e4b5d046871a5e68c903357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoom: {fileID: 2059288489}
+  isMoving: 0
 --- !u!114 &14302173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,6 +1832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomGrid: {fileID: 1313802402351875008}
   currentRoom: {fileID: 0}
+  generateRoom: {fileID: 1986263282}
 --- !u!4 &1396720026
 Transform:
   m_ObjectHideFlags: 0
@@ -1897,6 +1898,8 @@ MonoBehaviour:
     type: 3}
   playerPrefab: {fileID: 960753662132347123, guid: 589cd22f5f7ded34184fde8bbe829265,
     type: 3}
+  exitPrefab: {fileID: 7876105782047563894, guid: 5dab2b76890464f428030d01fadf266b,
+    type: 3}
   roomParent: {fileID: 1314758648}
   rooms: []
 --- !u!1 &2059288488 stripped
@@ -1918,6 +1921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   biome: 0
+  exits: []
   fireEnemyPrefab: {fileID: 0}
   waterEnemyPrefab: {fileID: 0}
   windEnemyPrefab: {fileID: 0}

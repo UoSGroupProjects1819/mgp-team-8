@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public Grid roomGrid;
     public Room currentRoom;
+    public GenerateRoom generateRoom;
 
     void Awake()
     {
@@ -27,5 +28,38 @@ public class GameManager : MonoBehaviour
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
         
+    }
+
+    public void RoomChanged()
+    {
+        if (currentRoom.roomsByExit.Count != currentRoom.exits.Count)
+        {
+            foreach (var exit in currentRoom.exits)
+            {
+                if (!currentRoom.roomsByExit.ContainsKey(exit))
+                {
+                    Room room = LookForNeighbor();
+                    currentRoom.roomsByExit.Add(exit, room);
+                    room.SetNeighbor(currentRoom);
+                }
+            }
+        }
+    }
+
+    private Room LookForNeighbor()
+    {
+        for (int i = 0; i < generateRoom.rooms.Count; i++)
+        {
+            if (!generateRoom.rooms[i].isNeighbor)
+            {
+                return generateRoom.rooms[i];
+            }
+        }
+        for (int i = 0; i < 99; i++)
+        {
+            GameObject room = generateRoom.CreateRoom();
+            room.SetActive(false);
+        }
+        return LookForNeighbor();
     }
 }

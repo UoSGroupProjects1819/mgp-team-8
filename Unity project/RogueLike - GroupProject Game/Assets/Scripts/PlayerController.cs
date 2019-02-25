@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Room currentRoom;
-    private bool isMoving = false;
+    public bool isMoving = false;
 
     public Stats playerStats;
 
@@ -26,7 +25,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "Exit")
                 {
-                    StartCoroutine(Move(currentRoom.grid.WorldToCell(transform.position), currentRoom.grid.WorldToCell(hit.collider.gameObject.transform.position)));
+                    StartCoroutine(MoveToExit(hit.collider.gameObject.transform.position, hit.collider.gameObject));
+                    //StartCoroutine(Move(GameManager.instance.currentRoom.grid.WorldToCell(transform.position), GameManager.instance.currentRoom.grid.WorldToCell(hit.collider.gameObject.transform.position)));
                 }
             }
         }
@@ -34,25 +34,61 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Move(Vector3Int myPos, Vector3Int targetPos)
     {
-        Vector3 movementVector = Vector3.MoveTowards(currentRoom.grid.CellToWorld(myPos), currentRoom.grid.CellToWorld(targetPos), 1f);
+        Vector3 movementVector = Vector3.MoveTowards(GameManager.instance.currentRoom.grid.CellToWorld(myPos), GameManager.instance.currentRoom.grid.CellToWorld(targetPos), 1f);
         isMoving = true;
-        while (myPos.x != targetPos.x || myPos.y != targetPos.y)
+        while (myPos.x != targetPos.x || myPos.z != targetPos.z)
         {
-            if (myPos.x == targetPos.x)
+            if (myPos.x != targetPos.x)
             {
                 movementVector.x = transform.position.x;
             }
-            else
+            else if (myPos.z != targetPos.z)
             {
                 movementVector.z = transform.position.z;
             }
             transform.position = movementVector - new Vector3(0f, movementVector.y - 1f, 0f);
             transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
-            myPos = currentRoom.grid.WorldToCell(transform.position);
+            myPos = GameManager.instance.currentRoom.grid.WorldToCell(transform.position);
             yield return new WaitForSeconds(0.01f);
-            movementVector = Vector3.MoveTowards(movementVector, currentRoom.grid.CellToWorld(targetPos), 1f);
+            movementVector = Vector3.MoveTowards(movementVector, GameManager.instance.currentRoom.grid.CellToWorld(targetPos), 1f);
         }
 
         isMoving = false;
+    }
+
+    IEnumerator MoveToExit(Vector3 targetPos, GameObject exit)
+    {
+        //Vector3 movementVector = Vector3.MoveTowards(GameManager.instance.currentRoom.grid.CellToWorld(myPos), GameManager.instance.currentRoom.grid.CellToWorld(targetPos), 1f);
+        isMoving = true;
+        while (transform.position.x != targetPos.x || transform.position.z != targetPos.z)
+        {
+            if (transform.position.x != targetPos.x)
+            {
+                if ((targetPos - transform.position).x < 0)
+                {
+                    transform.position += new Vector3(-1f, 0f, 0f);
+                }
+                else
+                {
+                    transform.position += new Vector3(1f, 0f, 0f);
+                }
+                
+            }
+            else if (transform.position.z != targetPos.z)
+            {
+                if ((targetPos - transform.position).z < 0)
+                {
+                    transform.position += new Vector3(0f, 0f, -1f);
+                }
+                else
+                {
+                    transform.position += new Vector3(0f, 0f, 1f);
+                }
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        isMoving = false;
+        GameManager.instance.currentRoom.ChangeRoom(exit, this.gameObject);
     }
 }

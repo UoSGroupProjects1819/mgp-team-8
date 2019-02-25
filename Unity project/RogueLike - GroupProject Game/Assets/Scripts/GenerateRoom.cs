@@ -8,6 +8,7 @@ public class GenerateRoom : MonoBehaviour
     public GameObject wallTile;
     public GameObject roomPrefab;
     public GameObject playerPrefab;
+    public GameObject exitPrefab;
 
     public Transform roomParent;
 
@@ -20,7 +21,7 @@ public class GenerateRoom : MonoBehaviour
     void Start()
     {
         rooms = new List<Room>();
-        for (int i = 0; i < 99; i++)
+        for (int i = 0; i < 15; i++)
         {
             GameObject room = CreateRoom();
             if (i != 0)
@@ -33,11 +34,20 @@ public class GenerateRoom : MonoBehaviour
                 GameObject player = Instantiate(playerPrefab);
                 player.transform.position = room.GetComponent<Room>().tiles[1][1].transform.position + new Vector3(0f, 1f, 0f);
                 room.GetComponent<Room>().validTiles[new Vector2Int(1, 1)] = false;
+                room.GetComponent<Room>().SetNeighbor(null);
             }
+        }
+        //Get exits for the first room
+        int count = 1;
+        for (int i = 0; i < rooms[0].exits.Count; i++)
+        {
+            rooms[0].roomsByExit.Add(rooms[0].exits[i], rooms[count]);
+            rooms[count].SetNeighbor(rooms[0]);
+            count++;
         }
     }
     
-    private GameObject CreateRoom()
+    public GameObject CreateRoom()
     {
         GameObject room = Instantiate(roomPrefab, roomParent);
         room.GetComponent<Room>().SetupTileArray(roomWidth, roomHeight);
@@ -51,14 +61,30 @@ public class GenerateRoom : MonoBehaviour
             {
                 if (isWall(i, j))
                 {
-                    GameObject tile = Instantiate(wallTile, room.transform);
-                    tile.tag = "Wall";
-                    tile.transform.localPosition = currentPosition + new Vector3(0f, 1f, 0f);
-                    currentPosition.x += 1f;
-                    room.GetComponent<Room>().tiles[i][j] = tile;
-                    if (!room.GetComponent<Room>().validTiles.ContainsKey(new Vector2Int(i, j)))
+                    if (i == roomWidth / 2 || j == roomHeight / 2)
                     {
-                        room.GetComponent<Room>().validTiles.Add(new Vector2Int(i, j), false);
+                        GameObject tile = Instantiate(exitPrefab, room.transform);
+                        tile.transform.localPosition = currentPosition;
+                        currentPosition.x += 1f;
+                        room.GetComponent<Room>().tiles[i][j] = tile;
+                        room.GetComponent<Room>().exits.Add(tile);
+                        if (!room.GetComponent<Room>().validTiles.ContainsKey(new Vector2Int(i, j)))
+                        {
+                            room.GetComponent<Room>().validTiles.Add(new Vector2Int(i, j), false);
+                        }
+                    }
+                    else
+                    {
+                        GameObject tile = Instantiate(wallTile, room.transform);
+                        tile.tag = "Wall";
+                        tile.GetComponent<Renderer>().material.color = Color.red;
+                        tile.transform.localPosition = currentPosition;
+                        currentPosition.x += 1f;
+                        room.GetComponent<Room>().tiles[i][j] = tile;
+                        if (!room.GetComponent<Room>().validTiles.ContainsKey(new Vector2Int(i, j)))
+                        {
+                            room.GetComponent<Room>().validTiles.Add(new Vector2Int(i, j), false);
+                        }
                     }
                 }
                 else
