@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(MoveToExit(hit.collider.gameObject.transform.position, hit.collider.gameObject));
                     //StartCoroutine(Move(GameManager.instance.currentRoom.grid.WorldToCell(transform.position), GameManager.instance.currentRoom.grid.WorldToCell(hit.collider.gameObject.transform.position)));
                 }
+                if (hit.collider.gameObject.tag == "Enemy")
+                {
+                    StartCoroutine(MoveToEnemy(hit.collider.gameObject.transform.position, hit.collider.gameObject));
+                }
             }
         }
     }
@@ -90,5 +94,43 @@ public class PlayerController : MonoBehaviour
 
         isMoving = false;
         GameManager.instance.currentRoom.ChangeRoom(exit, this.gameObject);
+    }
+
+    IEnumerator MoveToEnemy(Vector3 targetPos, GameObject enemy)
+    {
+        //Vector3 movementVector = Vector3.MoveTowards(GameManager.instance.currentRoom.grid.CellToWorld(myPos), GameManager.instance.currentRoom.grid.CellToWorld(targetPos), 1f);
+        isMoving = true;
+        while (transform.position.x != targetPos.x || transform.position.z != targetPos.z - 1)
+        {
+            if (transform.position.x != targetPos.x)
+            {
+                if ((targetPos - transform.position).x < 0)
+                {
+                    transform.position += new Vector3(-1f, 0f, 0f);
+                }
+                else
+                {
+                    transform.position += new Vector3(1f, 0f, 0f);
+                }
+
+            }
+            else if (transform.position.z != targetPos.z - 1)
+            {
+                if ((targetPos - transform.position).z < 1)
+                {
+                    transform.position += new Vector3(0f, 0f, -1f);
+                }
+                else
+                {
+                    transform.position += new Vector3(0f, 0f, 1f);
+                }
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        isMoving = false;
+        GameManager.instance.currentRoom.ChangeRoom(enemy, this.gameObject);
+
+
     }
 }
