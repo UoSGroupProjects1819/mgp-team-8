@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         //Vector3 movementVector = Vector3.MoveTowards(GameManager.instance.currentRoom.grid.CellToWorld(myPos), GameManager.instance.currentRoom.grid.CellToWorld(targetPos), 1f);
         isMoving = true;
-        while (transform.position.x != targetPos.x || transform.position.z != targetPos.z - 1)
+        while (transform.position.x != targetPos.x || transform.position.z != targetPos.z-1)
         {
             if (transform.position.x != targetPos.x)
             {
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
-            else if (transform.position.z != targetPos.z - 1)
+            else if (transform.position.z != targetPos.z-1)
             {
                 if ((targetPos - transform.position).z < 1)
                 {
@@ -131,6 +131,6 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
         GameManager.instance.currentRoom.ChangeRoom(enemy, this.gameObject);
 
-
+        
     }
 }

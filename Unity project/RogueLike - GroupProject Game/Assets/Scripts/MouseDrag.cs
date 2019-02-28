@@ -29,7 +29,7 @@ public class MouseDrag : MonoBehaviour
             {
                 dragging = true;
 
-                objectToDrag.SetAsLastSibling();
+                //objectToDrag.SetAsLastSibling();
 
                 originalPosition = objectToDrag.position;
                 objectToDragImage = objectToDrag.GetComponent<Image>();
@@ -42,7 +42,7 @@ public class MouseDrag : MonoBehaviour
             objectToDrag.position = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             if (objectToDrag != null)
             {
@@ -52,6 +52,9 @@ public class MouseDrag : MonoBehaviour
                 {
                     objectToDrag.position = objectToReplace.position;
                     objectToReplace.position = originalPosition;
+                    Transform tempParent = objectToReplace.parent;
+                    objectToReplace.parent = objectToDrag.parent;
+                    objectToDrag.parent = tempParent;
                 }
                 else
                 {
