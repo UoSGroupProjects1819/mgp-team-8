@@ -17,12 +17,12 @@ public class EnemyController : MonoBehaviour
     {
         if (currentState == States.Idle && moveCount >= Random.Range(25, 51))
         {
+            currentState = States.Move;
             MoveState();
             moveCount = 0;
         }
         moveCount++;
     }
-
     private void MoveState()
     {
         List<Vector2Int> positions = new List<Vector2Int>();

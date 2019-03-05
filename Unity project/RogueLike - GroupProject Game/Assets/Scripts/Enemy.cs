@@ -23,5 +23,4 @@ public class Enemy
         damage = stats.strength + Random.Range(10f, 35f);
         this.element = element;
     }
-    
 }
