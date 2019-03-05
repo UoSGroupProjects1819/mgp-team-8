@@ -15,6 +15,7 @@ public class Room : MonoBehaviour
     public GameObject[][] tiles;
     public Dictionary<Vector2Int, bool> validTiles;
     private List<GameObject> enemies;
+    public Dictionary<GameObject, bool> EnemyAlive;
 
     public bool isNeighbor { get; private set; } = false;
     [Header("Enemy prefabs")]
@@ -32,6 +33,7 @@ public class Room : MonoBehaviour
         validTiles = new Dictionary<Vector2Int, bool>();
         roomsByExit = new Dictionary<GameObject, Room>();
         exits = new List<GameObject>();
+        EnemyAlive = new Dictionary<GameObject, bool>();
     }
 
     private void Start()
@@ -64,6 +66,7 @@ public class Room : MonoBehaviour
         Vector3 enemyPos = SetEnemyPosition(enemy);
         enemy.transform.position = enemyPos;
         enemies.Add(enemy);
+        EnemyAlive.Add(enemy, true);
     }
 
     private GameObject GetEnemyOfElement(int index)

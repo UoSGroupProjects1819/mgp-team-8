@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
 
     public Stats playerStats;
 
+    public GameObject chestPrefab;
+    public GameObject chestLoot;
+    private bool isShowing;
+
     private void Awake()
     {
         //Initialize player's stats with default values
@@ -28,9 +32,17 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(MoveToExit(hit.collider.gameObject.transform.position, hit.collider.gameObject));
                     //StartCoroutine(Move(GameManager.instance.currentRoom.grid.WorldToCell(transform.position), GameManager.instance.currentRoom.grid.WorldToCell(hit.collider.gameObject.transform.position)));
                 }
+
                 if (hit.collider.gameObject.tag == "Enemy")
                 {
                     StartCoroutine(MoveToEnemy(hit.collider.gameObject.transform.position, hit.collider.gameObject));
+                }
+
+                if (hit.collider.gameObject.tag == "Chest")
+                {
+                    StartCoroutine(MoveToChest(hit.collider.gameObject.transform.position, hit.collider.gameObject));
+                    isShowing = !isShowing;
+                    chestLoot.SetActive(isShowing);
                 }
             }
         }
@@ -76,7 +88,7 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.position += new Vector3(1f, 0f, 0f);
                 }
-                
+
             }
             else if (transform.position.z != targetPos.z)
             {
@@ -100,7 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         //Vector3 movementVector = Vector3.MoveTowards(GameManager.instance.currentRoom.grid.CellToWorld(myPos), GameManager.instance.currentRoom.grid.CellToWorld(targetPos), 1f);
         isMoving = true;
-        while (transform.position.x != targetPos.x || transform.position.z != targetPos.z-1)
+        while (transform.position.x != targetPos.x || transform.position.z != targetPos.z - 1)
         {
             if (transform.position.x != targetPos.x)
             {
@@ -114,7 +126,7 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
-            else if (transform.position.z != targetPos.z-1)
+            else if (transform.position.z != targetPos.z - 1)
             {
                 if ((targetPos - transform.position).z < 1)
                 {
@@ -129,7 +141,60 @@ public class PlayerController : MonoBehaviour
         }
 
         isMoving = false;
-        GameManager.instance.currentRoom.ChangeRoom(enemy, this.gameObject);
+
+        while (enemy.GetComponent<EnemyController>().self.currentHp > 0)
+        {
+            AttackEnemy(enemy);
+        }
+    }
+
+    public void AttackEnemy(GameObject enemy)
+    {
+        if (enemy.GetComponent<EnemyController>().self.currentHp > 0)
+        {
+            enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength;
+            Debug.Log("touched");
+        }else if (enemy.GetComponent<EnemyController>().self.currentHp <= 0)
+        {
+            GameManager.instance.currentRoom.EnemyAlive[enemy] = false;
+            enemy.SetActive(false);
+        }
+    }
+
+    IEnumerator MoveToChest(Vector3 targetPos, GameObject chest)
+    {
+        //Vector3 movementVector = Vector3.MoveTowards(GameManager.instance.currentRoom.grid.CellToWorld(myPos), GameManager.instance.currentRoom.grid.CellToWorld(targetPos), 1f);
+        isMoving = true;
+        while (transform.position.x != targetPos.x || transform.position.z != targetPos.z - 2)
+        {
+            if (transform.position.x != targetPos.x)
+            {
+                if ((targetPos - transform.position).x < 0)
+                {
+                    transform.position += new Vector3(-1f, 0f, 0f);
+                }
+                else
+                {
+                    transform.position += new Vector3(1f, 0f, 0f);
+                }
+
+            }
+            else if (transform.position.z != targetPos.z - 2)
+            {
+                if ((targetPos - transform.position).z < 2)
+                {
+                    transform.position += new Vector3(0f, 0f, -1f);
+                }
+                else
+                {
+                    transform.position += new Vector3(0f, 0f, 1f);
+                }
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        isMoving = false;
+        
 
         
     }
