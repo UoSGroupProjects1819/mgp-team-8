@@ -88,15 +88,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   biome: 0
-  fireEnemyPrefab: {fileID: 5894889469988038918, guid: 17c90ec7669e9a14790f9cae1546ff1e,
+  exits: []
+  fireEnemyPrefab: {fileID: 5894889469988038918, guid: 5ee62aad48a683f4cb5a3b3a53e8ee7f,
     type: 3}
-  waterEnemyPrefab: {fileID: 1156518086458240765, guid: fb53d3abcc8a7704db4885492b728749,
+  waterEnemyPrefab: {fileID: 1156518086458240765, guid: 528c4c9c0b2107c4aabdeddf764af150,
     type: 3}
-  windEnemyPrefab: {fileID: 8881429541779013703, guid: 37abf34cfd44a6849ad33b131101b40b,
+  windEnemyPrefab: {fileID: 8881429541779013703, guid: 1bc56832de0109449933df8d183411bd,
     type: 3}
-  earthEnemyPrefab: {fileID: 3783850632283538513, guid: 53a9eeb3ccf36bf43b9511566a821f0b,
+  earthEnemyPrefab: {fileID: 3783850632283538513, guid: 447360ff58e75f84c82317e27b6cd3e4,
     type: 3}
-  lightEnemyPrefab: {fileID: 101861478378298150, guid: bf78aa85e8fa22447bdb680c7d3b68c7,
+  lightEnemyPrefab: {fileID: 101861478378298150, guid: 3bcb917be5249de4581322647fb9fd0c,
     type: 3}
-  darkEnemyPrefab: {fileID: 4950737702432198974, guid: c9586717b8b91ca4eb39ec97e0fc2494,
+  darkEnemyPrefab: {fileID: 4950737702432198974, guid: 37696149b56b85847bb74c46ae21c2de,
     type: 3}

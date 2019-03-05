@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -461,9 +461,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b2565f0edf9a64cac22c14f53e7c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorTile: {fileID: 8665332035952820493, guid: be1ccb145cdf6d24abe60149f3ebc585,
+  floorTile: {fileID: 6810470508661629099, guid: eb89852646262f54d894183c394325d4,
     type: 3}
-  wallTile: {fileID: 8665332035952820493, guid: be1ccb145cdf6d24abe60149f3ebc585,
+  wallTile: {fileID: 6810470508661629099, guid: eb89852646262f54d894183c394325d4,
     type: 3}
   roomPrefab: {fileID: 1067708780985822638, guid: 09f429849aba0a1468083cdaa309344f,
     type: 3}

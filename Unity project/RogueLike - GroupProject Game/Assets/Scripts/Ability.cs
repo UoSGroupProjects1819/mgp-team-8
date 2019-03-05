@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Ability
+public class Ability
 {
     public float cooldown;
     public float range;
     public float damage;
 
-    //public abstract void Cast();
+    public Ability(float cooldown, float range, float damage)
+    {
+        this.cooldown = cooldown;
+        this.range = range;
+        this.damage = damage;
+    }
 }

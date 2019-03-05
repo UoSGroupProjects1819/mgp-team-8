@@ -9,11 +9,12 @@ public enum Element
 
 public class Enemy
 {
-    private Stats stats;
+    public Stats stats;
     public float maxHp;
     public float currentHp;
     public float damage;
     public Element element;
+    public Ability ability;
 
     public Enemy(int str, int vit, int def, Element element)
     {
@@ -22,5 +23,6 @@ public class Enemy
         currentHp = maxHp;
         damage = stats.strength + Random.Range(10f, 35f);
         this.element = element;
+        this.ability = new Ability(0.5f, 2f, 5f);
     }
 }

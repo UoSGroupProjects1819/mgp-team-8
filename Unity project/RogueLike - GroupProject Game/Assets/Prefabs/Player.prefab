@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5240201801246512146}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
+  activeAbility: -1
+  maxHp: 0
+  currentHp: 0
   anim: {fileID: 2085752475297076209}
   chestPrefab: {fileID: 0}
   chestLoot: {fileID: 3733385495721045244, guid: e250a5d5cd647f04f9d28d4cc996c6a6,
