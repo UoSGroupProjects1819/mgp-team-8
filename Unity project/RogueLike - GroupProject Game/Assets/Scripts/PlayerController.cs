@@ -96,7 +96,11 @@ public class PlayerController : MonoBehaviour
             }
             else if (transform.position.z != targetPos.z - modifier)
             {
-                if ((targetPos - transform.position).z < 1)
+                if (targetPos.z + modifier == transform.position.z)
+                {
+                    break;
+                }
+                if ((targetPos - transform.position).z < modifier)
                 {
                     transform.position += new Vector3(0f, 0f, -1f);
                 }
@@ -128,6 +132,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameManager.instance.currentRoom.EnemyAlive[enemy] = false;
                 enemy.SetActive(false);
+                GameManager.instance.currentRoom.DropChest();
             }
         }
         else
@@ -160,6 +165,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.instance.currentRoom.EnemyAlive[enemy] = false;
             enemy.SetActive(false);
+            GameManager.instance.currentRoom.DropChest();
         }
     }
 

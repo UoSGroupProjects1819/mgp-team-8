@@ -18,6 +18,7 @@ public class Room : MonoBehaviour
     public Dictionary<GameObject, bool> EnemyAlive;
 
     public bool isNeighbor { get; private set; } = false;
+    private GameObject chest;
     [Header("Enemy prefabs")]
     public GameObject fireEnemyPrefab;
     public GameObject waterEnemyPrefab;
@@ -38,6 +39,7 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
+        chest = GameObject.FindGameObjectWithTag("Chest");
         int enemyNumber = Random.Range(1, 7);
         for (int i = 0; i < enemyNumber; i++)
         {
@@ -155,6 +157,15 @@ public class Room : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    public void DropChest()
+    {
+        if (!EnemyAlive.ContainsValue(true))
+        {
+            chest.transform.position = new Vector3((int)(tiles.Length / 2f), 15f, (int)(tiles.Length / 2f));
+            chest.GetComponent<Rigidbody>().useGravity = true;
         }
     }
 }
