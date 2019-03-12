@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class EnemyController : MonoBehaviour
     }
     public Enemy self;
     public Animator anim;
+    public Image HealthBar;
 
     public Vector2Int currentPosition;
     public States currentState = States.Idle;

@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //MoveToClosestEnemyAI();
         RaycastHit hit;
         if (Input.GetMouseButtonDown(0) && !isMoving)
         {
@@ -158,7 +157,6 @@ public class PlayerController : MonoBehaviour
         {
             anim.gameObject.transform.position = enemy.transform.position;
             anim.SetBool("UseAbility", true);
-            anim.SetFloat("AbilityType", activeAbility);
             enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength + m_activeAbility.damage;
             yield return new WaitForSecondsRealtime(m_activeAbility.cooldown + anim.GetCurrentAnimatorStateInfo(0).length);
         }
@@ -181,28 +179,6 @@ public class PlayerController : MonoBehaviour
         currentHp = maxHp;
         m_activeAbility = enemy.self.ability;
         //Hard coded value will need change
-        activeAbility = abilities.IndexOf(m_activeAbility) / 5f;
-    }
-
-    private void MoveToClosestEnemyAI()
-    {
-        if (isMoving || !GameManager.instance.currentRoom.EnemyAlive.ContainsValue(true))
-        {
-            return;
-        }
-        float closestDistance = float.MaxValue;
-        GameObject closestEnemy = null;
-        foreach (KeyValuePair<GameObject, bool> pair in GameManager.instance.currentRoom.EnemyAlive)
-        {
-            if (pair.Value)
-            {
-                if (closestDistance > Vector3.Distance(transform.position, pair.Key.transform.position))
-                {
-                    closestDistance = Vector3.Distance(transform.position, pair.Key.transform.position);
-                    closestEnemy = pair.Key;
-                }
-            }
-        }
-        StartCoroutine(MoveTo(closestEnemy.transform.position, closestEnemy, AttackEnemy, 1));
+        activeAbility = 0f;
     }
 }
