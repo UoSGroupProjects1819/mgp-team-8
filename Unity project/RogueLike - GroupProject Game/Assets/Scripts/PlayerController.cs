@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
@@ -25,7 +26,8 @@ public class PlayerController : MonoBehaviour
     public GameObject chestPrefab;
     public GameObject chestLoot;
     private bool isShowing;
-    private bool abilityToggle = true;
+    private bool abilityToggle = false;
+    public Button ToggleAttack;
 
     private void Awake()
     {
@@ -48,6 +50,12 @@ public class PlayerController : MonoBehaviour
         abilities.Add(ability5);
         abilities.Add(ability6);
         //m_activeAbility = abilities[0];
+    }
+
+    void ButtonClicked()
+    {
+        abilityToggle = !abilityToggle;
+        Debug.Log("button pressed");
     }
 
     void Update()

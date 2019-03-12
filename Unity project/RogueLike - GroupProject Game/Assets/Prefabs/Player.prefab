@@ -115,6 +115,8 @@ MonoBehaviour:
   chestPrefab: {fileID: 0}
   chestLoot: {fileID: 3733385495721045244, guid: e250a5d5cd647f04f9d28d4cc996c6a6,
     type: 3}
+  ToggleAttack: {fileID: 368671717368274274, guid: 692d06676f7a52d40bd494992bca8e20,
+    type: 3}
 --- !u!114 &5240201801246512146
 MonoBehaviour:
   m_ObjectHideFlags: 0
