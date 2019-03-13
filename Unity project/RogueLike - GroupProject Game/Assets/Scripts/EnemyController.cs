@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponentInChildren<Animator>();
+        self.currentHp = self.maxHp;
     }
 
     private void FixedUpdate()
@@ -89,6 +90,7 @@ public class EnemyController : MonoBehaviour
             anim.SetBool("UseAbility", true);
             player.GetComponent<PlayerController>().currentHp -= self.stats.strength + self.ability.damage;
             yield return new WaitForSecondsRealtime(self.ability.cooldown + anim.GetCurrentAnimatorStateInfo(0).length);
+            player.GetComponent<PlayerController>().UpdateHealth();
         }
         anim.gameObject.transform.localPosition = Vector3.zero;
         currentState = States.Idle;

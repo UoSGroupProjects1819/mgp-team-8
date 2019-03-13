@@ -109,13 +109,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   activeAbility: -1
-  maxHp: 100
-  currentHp: 100
+  maxHp: 0
+  currentHp: 0
   anim: {fileID: 2085752475297076209}
   chestPrefab: {fileID: 0}
   chestLoot: {fileID: 3733385495721045244, guid: e250a5d5cd647f04f9d28d4cc996c6a6,
-    type: 3}
-  ToggleAttack: {fileID: 368671717368274274, guid: 692d06676f7a52d40bd494992bca8e20,
     type: 3}
 --- !u!114 &5240201801246512146
 MonoBehaviour:
@@ -175,7 +173,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9b632a122debc9b419264bbf40501d6c, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
