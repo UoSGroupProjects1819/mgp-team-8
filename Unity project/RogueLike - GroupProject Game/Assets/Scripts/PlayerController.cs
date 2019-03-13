@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
 
     void ButtonClicked()
     {
-        abilityToggle = !abilityToggle;
         Debug.Log("button pressed");
     }
 
