@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Grid roomGrid;
     public Room currentRoom;
     public GenerateRoom generateRoom;
+    public PlayerController player;
 
     void Awake()
     {

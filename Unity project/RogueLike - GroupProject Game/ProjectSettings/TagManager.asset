@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - UIimage
   - Chest
+  - Rune
+  - Health
+  - Shop
   layers:
   - Default
   - TransparentFX

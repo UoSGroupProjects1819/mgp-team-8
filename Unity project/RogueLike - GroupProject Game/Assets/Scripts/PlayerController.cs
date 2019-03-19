@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     private bool abilityToggle = true;
     public Button ToggleAttack;
 
+    [SerializeField]
+    private float currency = 0f;
+    private int chestCount = 0;
+
     public void Start()
     {
         ToggleAttack.onClick.AddListener(ButtonClicked);
@@ -38,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Healthbar = GameObject.FindGameObjectWithTag("Health").GetComponent<Image>();
         //Initialize player's stats with default values
         playerStats = new Stats(10, 10, 10);
         maxHp = playerStats.vitality + 200f;
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour
         abilities.Add(ability5);
         abilities.Add(ability6);
         //m_activeAbility = abilities[0];
+        GameManager.instance.player = this;
     }
 
     public void ButtonClicked()
@@ -87,6 +93,10 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(MoveTo(hit.collider.gameObject.transform.position, hit.collider.gameObject, OpenChest, 2));
                     isShowing = !isShowing;
                     chestLoot.SetActive(isShowing);
+                }
+                else if (hit.collider.gameObject.tag == "Shop")
+                {
+                    StartCoroutine(MoveTo(hit.collider.transform.position, hit.collider.gameObject, OpenShop, 1));
                 }
             }
         }
@@ -169,7 +179,12 @@ public class PlayerController : MonoBehaviour
 
     public void OpenChest(GameObject chest)
     {
-        //Do something to open the chest
+        if (!GameManager.instance.currentRoom.isChestOpened)
+        {
+            chestCount++;
+            currency += chestCount * UnityEngine.Random.Range(150f, 500f) + UnityEngine.Random.Range(1f, 99f);
+            GameManager.instance.currentRoom.isChestOpened = true;
+        }
     }
 
     IEnumerator CastAbility(GameObject enemy)
@@ -179,7 +194,7 @@ public class PlayerController : MonoBehaviour
             anim.gameObject.transform.position = enemy.transform.position;
             anim.SetBool("UseAbility", true);
             anim.SetFloat("AbilityType", activeAbility);
-            enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength + m_activeAbility.damage;
+            enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength + m_activeAbility.damage - 5f;
             yield return new WaitForSecondsRealtime(m_activeAbility.cooldown + anim.GetCurrentAnimatorStateInfo(0).length);
         }
         anim.gameObject.transform.localPosition = Vector3.zero;
@@ -189,6 +204,19 @@ public class PlayerController : MonoBehaviour
             enemy.SetActive(false);
             GameManager.instance.currentRoom.DropChest();
         }
+    }
+
+    public void OpenShop(GameObject shop)
+    {
+        UIManager.instance.shopReference.SetActive(true);
+        UpdateShopText();
+    }
+
+    public void UpdateShopText()
+    {
+        UIManager.instance.strText.text = (Shop.strPriceMultiplier * 1500 + UnityEngine.Random.Range(1f, 99f)).ToString();
+        UIManager.instance.vitText.text = (Shop.vitPriceMultiplier * 1500 + UnityEngine.Random.Range(1f, 99f)).ToString();
+        UIManager.instance.defText.text = (Shop.defPriceMultiplier * 1500 + UnityEngine.Random.Range(1f, 99f)).ToString();
     }
 
     public void ChangeActiveAbility()
@@ -224,5 +252,50 @@ public class PlayerController : MonoBehaviour
             }
         }
         StartCoroutine(MoveTo(closestEnemy.transform.position, closestEnemy, AttackEnemy, 1));
+    }
+
+    public bool BuyStats(string statName)
+    {
+        float price;
+        if (statName == "Str")
+        {
+            float.TryParse(UIManager.instance.strText.text, out price);
+            price *= Shop.strPriceMultiplier;
+
+            if (currency >= price)
+            {
+                currency -= price;
+                playerStats.SetStr(playerStats.strength + 1);
+                Debug.Log(playerStats.strength);
+                return true;
+            }
+        }
+        else if (statName == "Vit")
+        {
+            float.TryParse(UIManager.instance.vitText.text, out price);
+            price *= Shop.vitPriceMultiplier;
+            Debug.Log(price);
+            if (currency >= price)
+            {
+                currency -= price;
+                playerStats.SetVit(playerStats.vitality + 1);
+                Debug.Log(playerStats.vitality);
+                return true;
+            }
+        }
+        else if (statName == "Def")
+        {
+            float.TryParse(UIManager.instance.defText.text, out price);
+            price *= Shop.defPriceMultiplier;
+
+            if (currency >= price)
+            {
+                currency -= price;
+                playerStats.SetDef(playerStats.defense + 1);
+                Debug.Log(playerStats.defense);
+                return true;
+            }
+        }
+        return false;
     }
 }

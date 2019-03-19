@@ -19,6 +19,7 @@ public class Room : MonoBehaviour
 
     public bool isNeighbor { get; private set; } = false;
     private GameObject chest;
+    public bool isChestOpened = false;
     [Header("Enemy prefabs")]
     public GameObject fireEnemyPrefab;
     public GameObject waterEnemyPrefab;
