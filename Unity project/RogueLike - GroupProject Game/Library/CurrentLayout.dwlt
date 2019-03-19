@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 38
+  controlID: 53
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 256
     height: 450
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 224}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 68
+  controlID: 90
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 69
+  controlID: 14
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -455,21 +455,21 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/UI and Buttons
+    - Assets/Prefabs/UI and Buttons/Catalogue Versions
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/UI and Buttons
+  - Assets/Prefabs/UI and Buttons/Catalogue Versions
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Lectures\2nd Semestre\Group Project\RogueLike - GroupProject
     Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a00a0000
-    m_LastClickedID: 2720
-    m_ExpandedIDs: 00000000bc090000a00a0000260c0000fc2f000000ca9a3b
+    scrollPos: {x: 0, y: 64}
+    m_SelectedIDs: c01f0b00
+    m_LastClickedID: 729024
+    m_ExpandedIDs: 000000002a0a00006e0b0000640d0000142f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -497,7 +497,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000bc090000260c0000fc2f0000
+    m_ExpandedIDs: 000000002a0a00006e0b0000640d0000142f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -616,23 +616,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 0c40feffbafbffffd4fbffff
+      m_SelectedIDs: ae2e0b00
+      m_LastClickedID: 732846
+      m_ExpandedIDs: d82a0b00ae2e0b00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Panel
-        m_OriginalName: Panel
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 121428
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -668,14 +668,14 @@ MonoBehaviour:
     height: 430
   m_PersistentViewDataDictionary: {fileID: 0}
   m_WindowGUID: bc890fc565090484ca59cca6226d23bd
-  m_SceneLighting: 1
+  m_SceneLighting: 0
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.4084706, y: -7.048744, z: 2.6313465}
+    m_Target: {x: 1.2757682, y: -3.499826, z: -63.225765}
     speed: 2
-    m_Value: {x: -1.4084706, y: -7.048744, z: 2.6313465}
+    m_Value: {x: 1.2757682, y: -3.499826, z: -63.225765}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -703,19 +703,20 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.0039182147, y: 0.0066117053, z: -0.000025831534, w: -0.9999705}
+    m_Target: {x: 0.0071814572, y: 0.0012126706, z: 0.000009042942, w: -0.9999736}
     speed: 2
-    m_Value: {x: -0.0039182147, y: 0.0066117053, z: -0.000025831534, w: -0.9999705}
+    m_Value: {x: 0.0071814563, y: 0.0012126705, z: 0.000009042941, w: -0.9999735}
   m_Size:
-    m_Target: 92.32686
+    m_Target: 32.988922
     speed: 2
-    m_Value: 92.32686
+    m_Value: 32.988922
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: -0.25465158, y: -0.6505725, z: 0.24667509, w: -0.67160964}
+  m_LastSceneViewRotation: {x: 0.0020815257, y: -0.0023874308, z: -0.0000047292992,
+    w: -0.999995}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
