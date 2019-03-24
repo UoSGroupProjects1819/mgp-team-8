@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class GenerateRoom : MonoBehaviour
 {
-    public GameObject[] floorTiles;
-    public GameObject[] wallTiles;
+    public GameObject floorTile;
+    public GameObject wallTile;
     public GameObject roomPrefab;
     public GameObject playerPrefab;
     public GameObject exitPrefab;
-    public GameObject shopPrefab;
 
     public Transform roomParent;
 
@@ -18,9 +17,6 @@ public class GenerateRoom : MonoBehaviour
 
     private int roomWidth = 20;
     private int roomHeight = 20;
-
-    private int biomeCount = 0;
-    private Element nextBiome = Element.Fire;
 
     void Start()
     {
@@ -53,19 +49,10 @@ public class GenerateRoom : MonoBehaviour
     
     public GameObject CreateRoom()
     {
-        bool isShop;
-        Element biome = ChooseBiome(out isShop);
-        GameObject room;
-        if (isShop)
-        {
-            room = Instantiate(shopPrefab, roomParent);
-        }
-        else
-        {
-            room = Instantiate(roomPrefab, roomParent);
-        }
+        GameObject room = Instantiate(roomPrefab, roomParent);
         room.GetComponent<Room>().SetupTileArray(roomWidth, roomHeight);
-        room.GetComponent<Room>().biome = biome;
+        //Select a random biome (Can be changed to specific rules to create better biomes)
+        room.GetComponent<Room>().biome = (Element)Random.Range(0, 6);
 
         Vector3 currentPosition = Vector3.zero;
         for (int i = 0; i < roomWidth; i++)
@@ -88,7 +75,7 @@ public class GenerateRoom : MonoBehaviour
                     }
                     else
                     {
-                        GameObject tile = Instantiate(wallTiles[(int)nextBiome], room.transform);
+                        GameObject tile = Instantiate(wallTile, room.transform);
                         tile.tag = "Wall";
                         tile.GetComponent<Renderer>().material.color = Color.red;
                         tile.transform.localPosition = currentPosition;
@@ -102,7 +89,7 @@ public class GenerateRoom : MonoBehaviour
                 }
                 else
                 {
-                    GameObject tile = Instantiate(floorTiles[(int)nextBiome], room.transform);
+                    GameObject tile = Instantiate(floorTile, room.transform);
                     tile.tag = "Floor";
                     tile.transform.localPosition = currentPosition;
                     currentPosition.x += 1f;
@@ -130,46 +117,6 @@ public class GenerateRoom : MonoBehaviour
         else
         {
             return false;
-        }
-    }
-
-    private Element ChooseBiome(out bool isShop)
-    {
-        isShop = false;
-        if (biomeCount == 0)
-        {
-            nextBiome = GenerateElement();
-            biomeCount++;
-            return nextBiome;
-        }
-        else
-        {
-            if (5f / biomeCount < Random.Range(0f, 1f))
-            {
-                biomeCount = 1;
-                nextBiome = GenerateElement();
-                isShop = true;
-                return nextBiome;
-            }
-            else
-            {
-                biomeCount++;
-                return nextBiome;
-            }
-        }
-    }
-    
-    //Generates an element that is different from the nextBiome variable
-    private Element GenerateElement()
-    {
-        Element element = (Element)Random.Range(0, 6);
-        if (element == nextBiome)
-        {
-            return GenerateElement();
-        }
-        else
-        {
-            return element;
         }
     }
 }

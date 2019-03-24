@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public bool Shop;
     //Idea about room navigation keeping track of each room's neighbor and direction
     public Element biome;
 
@@ -38,21 +37,14 @@ public class Room : MonoBehaviour
         exits = new List<GameObject>();
         EnemyAlive = new Dictionary<GameObject, bool>();
     }
+
     private void Start()
     {
-        //If this room is a shop don't spawn enemies or a chest
-        if (Shop)
+        chest = GameObject.FindGameObjectWithTag("Chest");
+        int enemyNumber = Random.Range(1, 7);
+        for (int i = 0; i < enemyNumber; i++)
         {
-
-        }
-        else
-        {
-            chest = GameObject.FindGameObjectWithTag("Chest");
-            int enemyNumber = Random.Range(1, 7);
-            for (int i = 0; i < enemyNumber; i++)
-            {
-                SpawnEnemies();
-            }
+            SpawnEnemies();
         }
     }
 
@@ -171,7 +163,7 @@ public class Room : MonoBehaviour
 
     public void DropChest()
     {
-        if (!EnemyAlive.ContainsValue(true) && !Shop)
+        if (!EnemyAlive.ContainsValue(true))
         {
             chest.transform.position = new Vector3((int)(tiles.Length / 2f), 15f, (int)(tiles.Length / 2f));
             chest.GetComponent<Rigidbody>().useGravity = true;
