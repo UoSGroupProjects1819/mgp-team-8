@@ -2073,15 +2073,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b2565f0edf9a64cac22c14f53e7c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorTile: {fileID: 6810470508661629099, guid: eb89852646262f54d894183c394325d4,
-    type: 3}
-  wallTile: {fileID: 6810470508661629099, guid: eb89852646262f54d894183c394325d4,
-    type: 3}
+  floorTiles:
+  - {fileID: 6810470508661629099, guid: eb89852646262f54d894183c394325d4, type: 3}
+  - {fileID: 5060956301396443769, guid: df85ca00b9f62f34d99e0fb6d30b8d64, type: 3}
+  - {fileID: 9031847922434480788, guid: d88a49e505ee57443a9fb742e6f12687, type: 3}
+  - {fileID: 6693274075800321693, guid: 9e16f297ef02a7f419ca7c58167b4542, type: 3}
+  - {fileID: 1357199926740192791, guid: 76a41334433ab8a479a414e852c05855, type: 3}
+  - {fileID: 6816416609586440372, guid: 6aa9718cd13179a42a7a5e0cd86a0291, type: 3}
+  wallTiles:
+  - {fileID: 6810470508661629099, guid: eb89852646262f54d894183c394325d4, type: 3}
+  - {fileID: 5060956301396443769, guid: df85ca00b9f62f34d99e0fb6d30b8d64, type: 3}
+  - {fileID: 9031847922434480788, guid: d88a49e505ee57443a9fb742e6f12687, type: 3}
+  - {fileID: 6693274075800321693, guid: 9e16f297ef02a7f419ca7c58167b4542, type: 3}
+  - {fileID: 1357199926740192791, guid: 76a41334433ab8a479a414e852c05855, type: 3}
+  - {fileID: 6816416609586440372, guid: 6aa9718cd13179a42a7a5e0cd86a0291, type: 3}
   roomPrefab: {fileID: 1067708780985822638, guid: 09f429849aba0a1468083cdaa309344f,
     type: 3}
   playerPrefab: {fileID: 960753662132347123, guid: 589cd22f5f7ded34184fde8bbe829265,
     type: 3}
   exitPrefab: {fileID: 7876105782047563894, guid: 5dab2b76890464f428030d01fadf266b,
+    type: 3}
+  shopPrefab: {fileID: 3867116608091856430, guid: 43ccae2647951b74fb63fb9db8bd2dd5,
     type: 3}
   roomParent: {fileID: 1314758648}
   rooms: []
