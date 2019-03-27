@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
                 return generateRoom.rooms[i];
             }
         }
-        for (int i = 0; i < 99; i++)
+        for (int i = 0; i < 40; i++)
         {
             GameObject room = generateRoom.CreateRoom();
             room.SetActive(false);
