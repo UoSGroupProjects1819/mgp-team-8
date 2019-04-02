@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         abilities.Add(ability4);
         abilities.Add(ability5);
         abilities.Add(ability6);
-        //m_activeAbility = abilities[0];
+        m_activeAbility = abilities[0];
         GameManager.instance.player = this;
     }
 
