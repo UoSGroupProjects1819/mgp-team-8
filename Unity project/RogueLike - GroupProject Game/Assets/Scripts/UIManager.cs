@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public Text vitText;
     public GameObject shopReference;
 
+    public Button attackButton;
+
     void Awake()
     {
         //Check if instance already exists
@@ -56,5 +58,10 @@ public class UIManager : MonoBehaviour
             Shop.vitPriceMultiplier++;
             GameManager.instance.player.UpdateShopText();
         }
+    }
+
+    public void ToggleAttack()
+    {
+        GameManager.instance.player.toggleAttack = !GameManager.instance.player.toggleAttack;
     }
 }

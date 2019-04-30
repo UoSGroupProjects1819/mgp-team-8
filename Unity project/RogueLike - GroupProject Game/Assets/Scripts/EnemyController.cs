@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     int moveCount = 0;
     public bool inCombat = false;
     private GameObject player;
+    public float activeAbility;
 
     private void Start()
     {
@@ -86,8 +87,9 @@ public class EnemyController : MonoBehaviour
     {
         while (player.GetComponent<PlayerController>().currentHp > 0f && IsPlayerInRange())
         {
-            anim.gameObject.transform.position = player.transform.position;
+            anim.gameObject.transform.position = player.transform.position + new Vector3(0, 1, 0);
             anim.SetBool("UseAbility", true);
+            anim.SetFloat("AbilityType", activeAbility);
             player.GetComponent<PlayerController>().currentHp -= self.stats.strength + self.ability.damage;
             yield return new WaitForSecondsRealtime(self.ability.cooldown + anim.GetCurrentAnimatorStateInfo(0).length);
             player.GetComponent<PlayerController>().UpdateHealth();

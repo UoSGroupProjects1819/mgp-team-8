@@ -7,12 +7,15 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    public Dictionary<Element, int> enemiesKilledByAbility;
+    public bool toggleAttack = true;
+
     public bool isMoving = false;
     /// <summary>
     /// -1f means no ability is active(a.k.a basic attack) then from 0 to 1 (the step is 0.2) there are all the other abilities
     /// This is used by the animator to decide which animation to play
     /// </summary>
-    public float activeAbility = -1f;
+    public float activeAbility = 0.2f;
 
     public List<Ability> abilities;
     private Ability m_activeAbility;
@@ -36,13 +39,21 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
-        ToggleAttack.onClick.AddListener(ButtonClicked);
+        //ToggleAttack.onClick.AddListener(ButtonClicked);
         currentHp = maxHp;
+        enemiesKilledByAbility = new Dictionary<Element, int>();
+
+        enemiesKilledByAbility.Add(Element.Fire, 0);
+        enemiesKilledByAbility.Add(Element.Water, 0);
+        enemiesKilledByAbility.Add(Element.Wind, 0);
+        enemiesKilledByAbility.Add(Element.Earth, 0);
+        enemiesKilledByAbility.Add(Element.Light, 0);
+        enemiesKilledByAbility.Add(Element.Dark, 0);
     }
 
     private void Awake()
     {
-        Healthbar = GameObject.FindGameObjectWithTag("Health").GetComponent<Image>();
+        Healthbar = GameObject.FindGameObjectWithTag("Health").GetComponentInChildren<Image>();
         //Initialize player's stats with default values
         playerStats = new Stats(10, 10, 10);
         maxHp = playerStats.vitality + 200f;
@@ -72,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        MoveToClosestEnemyAI();
+        //MoveToClosestEnemyAI();
         RaycastHit hit;
         if (Input.GetMouseButtonDown(0) && !isMoving)
         {
@@ -140,7 +151,7 @@ public class PlayerController : MonoBehaviour
                     transform.position += new Vector3(0f, 0f, 1f);
                 }
             }
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.03f);
         }
 
         isMoving = false;
@@ -149,27 +160,27 @@ public class PlayerController : MonoBehaviour
 
     public void AttackEnemy(GameObject enemy)
     {
-        if (activeAbility == -1f)
-        {
-            if (enemy.GetComponent<EnemyController>().self.currentHp > 0)
-            {
-                enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength;
-                if (abilityToggle)
-                {
-                    AttackEnemy(enemy);
-                }
-            }
-            else if (enemy.GetComponent<EnemyController>().self.currentHp <= 0)
-            {
-                GameManager.instance.currentRoom.EnemyAlive[enemy] = false;
-                enemy.SetActive(false);
-                GameManager.instance.currentRoom.DropChest();
-            }
-        }
-        else
-        {
+        //if (activeAbility == -1f)
+        //{
+        //    if (enemy.GetComponent<EnemyController>().self.currentHp > 0)
+        //    {
+        //        enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength;
+        //        if (abilityToggle)
+        //        {
+        //            AttackEnemy(enemy);
+        //        }
+        //    }
+        //    else if (enemy.GetComponent<EnemyController>().self.currentHp <= 0)
+        //    {
+        //        GameManager.instance.currentRoom.EnemyAlive[enemy] = false;
+        //        enemy.SetActive(false);
+        //        GameManager.instance.currentRoom.DropChest();
+        //    }
+        //}
+        //else
+        //{
             StartCoroutine(CastAbility(enemy));
-        }
+        //}
     }
     
     public void ChangeRoomAction(GameObject exit)
@@ -189,17 +200,45 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator CastAbility(GameObject enemy)
     {
-        while (enemy.GetComponent<EnemyController>().self.currentHp > 0f && abilityToggle)
+        while (enemy.GetComponent<EnemyController>().self.currentHp > 0f)
         {
-            anim.gameObject.transform.position = enemy.transform.position;
+            if (!toggleAttack)
+            {
+                break;
+            }
+            anim.gameObject.transform.position = enemy.transform.position + new Vector3(0, 1, 0);
             anim.SetBool("UseAbility", true);
             anim.SetFloat("AbilityType", activeAbility);
-            enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength + m_activeAbility.damage - 5f;
+            enemy.GetComponent<EnemyController>().self.currentHp -= playerStats.strength + m_activeAbility.damage + 10f;
             yield return new WaitForSecondsRealtime(m_activeAbility.cooldown + anim.GetCurrentAnimatorStateInfo(0).length);
         }
         anim.gameObject.transform.localPosition = Vector3.zero;
         if (enemy.GetComponent<EnemyController>().self.currentHp <= 0f)
         {
+            if (activeAbility == 0f)
+            {
+                enemiesKilledByAbility[Element.Water]++;
+            }
+            else if (activeAbility == 0.2f)
+            {
+                enemiesKilledByAbility[Element.Dark]++;
+            }
+            else if (activeAbility == 0.4f)
+            {
+                enemiesKilledByAbility[Element.Light]++;
+            }
+            else if (activeAbility == 0.6f)
+            {
+                enemiesKilledByAbility[Element.Fire]++;
+            }
+            else if (activeAbility == 0.8f)
+            {
+                enemiesKilledByAbility[Element.Wind]++;
+            }
+            else if (activeAbility == 1f)
+            {
+                enemiesKilledByAbility[Element.Earth]++;
+            }
             GameManager.instance.currentRoom.EnemyAlive[enemy] = false;
             enemy.SetActive(false);
             GameManager.instance.currentRoom.DropChest();
@@ -229,7 +268,7 @@ public class PlayerController : MonoBehaviour
         currentHp = maxHp;
         m_activeAbility = enemy.self.ability;
         //Hard coded value will need change
-        activeAbility = abilities.IndexOf(m_activeAbility) / 5f;
+        activeAbility = enemy.activeAbility;
     }
 
     private void MoveToClosestEnemyAI()

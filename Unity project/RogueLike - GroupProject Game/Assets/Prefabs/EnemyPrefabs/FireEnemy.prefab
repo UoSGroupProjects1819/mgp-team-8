@@ -145,9 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eea122e24d4e55468ea40aef75b4ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  HealthBar: {fileID: 0}
   currentPosition: {x: 0, y: 0}
   currentState: 0
   inCombat: 0
+  activeAbility: 0.6
 --- !u!65 &5999586733056685404
 BoxCollider:
   m_ObjectHideFlags: 0

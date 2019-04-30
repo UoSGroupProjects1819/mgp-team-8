@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  HealthBar: {fileID: 0}
   currentPosition: {x: 0, y: 0}
   currentState: 0
   inCombat: 0
+  activeAbility: 0.4
 --- !u!65 &9197913186310432035
 BoxCollider:
   m_ObjectHideFlags: 0
