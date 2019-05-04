@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float currency = 0f;
     private int chestCount = 0;
+    public Text CurrencyText;
 
     public void Start()
     {
@@ -306,6 +307,7 @@ public class PlayerController : MonoBehaviour
                 currency -= price;
                 playerStats.SetStr(playerStats.strength + 1);
                 Debug.Log(playerStats.strength);
+                UpdateCurrency();
                 return true;
             }
         }
@@ -319,6 +321,7 @@ public class PlayerController : MonoBehaviour
                 currency -= price;
                 playerStats.SetVit(playerStats.vitality + 1);
                 Debug.Log(playerStats.vitality);
+                UpdateCurrency();
                 return true;
             }
         }
@@ -332,9 +335,20 @@ public class PlayerController : MonoBehaviour
                 currency -= price;
                 playerStats.SetDef(playerStats.defense + 1);
                 Debug.Log(playerStats.defense);
+                UpdateCurrency();
                 return true;
             }
         }
         return false;
+    }
+
+    public void AddCurrency(int NewCurrencyValue)
+    {
+        currency += NewCurrencyValue;
+        UpdateCurrency();
+    }
+    void UpdateCurrency()
+    {
+        CurrencyText.text = currency.ToString();
     }
 }
