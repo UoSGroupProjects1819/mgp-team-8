@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
         {
             if (activeAbility == 0f)
             {
-                enemiesKilledByAbility[Element.Water]++;
+                enemiesKilledByAbility[Element.Water] += 100;
             }
             else if (activeAbility == 0.2f)
             {

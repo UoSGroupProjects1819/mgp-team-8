@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Room currentRoom;
     public GenerateRoom generateRoom;
     public PlayerController player;
+    public AudioController audioController;
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void RoomChanged()
     {
+
         if (currentRoom.roomsByExit.Count != currentRoom.exits.Count)
         {
             foreach (var exit in currentRoom.exits)
@@ -47,8 +49,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetAudioBackgroundMusic()
+    {
+        if (currentRoom.biome == Element.Dark)
+        {
+            audioController.SetAudioClip(audioController.darkBiome);
+        }
+        else if (currentRoom.biome == Element.Earth)
+        {
+            audioController.SetAudioClip(audioController.earthBiome);
+        }
+        else if (currentRoom.biome == Element.Fire)
+        {
+            audioController.SetAudioClip(audioController.fireBiome);
+        }
+        else if (currentRoom.biome == Element.Light)
+        {
+            audioController.SetAudioClip(audioController.lightBiome);
+        }
+        else if (currentRoom.biome == Element.Water)
+        {
+            audioController.SetAudioClip(audioController.waterBiome);
+        }
+        else
+        {
+            audioController.SetAudioClip(audioController.windBiome);
+        }
+    }
+
     private Room LookForNeighbor()
     {
+        SetAudioBackgroundMusic();
         for (int i = 0; i < generateRoom.rooms.Count; i++)
         {
             if (!generateRoom.rooms[i].isNeighbor)

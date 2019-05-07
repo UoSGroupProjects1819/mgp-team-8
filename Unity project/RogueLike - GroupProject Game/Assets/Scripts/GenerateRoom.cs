@@ -35,6 +35,7 @@ public class GenerateRoom : MonoBehaviour
             else
             {
                 GameManager.instance.currentRoom = room.GetComponent<Room>();
+                GameManager.instance.SetAudioBackgroundMusic();
                 GameObject player = Instantiate(playerPrefab);
                 player.transform.position = room.GetComponent<Room>().tiles[1][1].transform.position + new Vector3(0f, 1f, 0f);
                 room.GetComponent<Room>().validTiles[new Vector2Int(1, 1)] = false;

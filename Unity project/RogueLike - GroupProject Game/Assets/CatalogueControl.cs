@@ -36,6 +36,23 @@ public class CatalogueControl : MonoBehaviour
     public TextMeshProUGUI light3;
     public TextMeshProUGUI light4;
 
+    public Image item1;
+    public Image item2;
+    public Image item3;
+    public Image item4;
+    public Image item5;
+    public Image item6;
+
+    public Sprite sprite1;
+    public Sprite sprite2;
+    public Sprite sprite3;
+    public Sprite sprite4;
+    public Sprite sprite5;
+    public Sprite sprite6;
+
+    public Dictionary<Image, int> imageCounter;
+    public List<Sprite> sprites;
+
     private int stageOne = 10;
     private int stageTwo = 20;
     private int stageThree = 30;
@@ -49,6 +66,22 @@ public class CatalogueControl : MonoBehaviour
         currentLightStageText = light1;
         currentWindStageText = wind1;
         currentEarthStageText = earth1;
+
+        imageCounter = new Dictionary<Image, int>();
+        imageCounter.Add(item1, 0);
+        imageCounter.Add(item2, 0);
+        imageCounter.Add(item3, 0);
+        imageCounter.Add(item4, 0);
+        imageCounter.Add(item5, 0);
+        imageCounter.Add(item6, 0);
+
+        sprites = new List<Sprite>();
+        sprites.Add(sprite1);
+        sprites.Add(sprite2);
+        sprites.Add(sprite3);
+        sprites.Add(sprite4);
+        sprites.Add(sprite5);
+        sprites.Add(sprite6);
     }
 
     private void Update()
@@ -91,6 +124,9 @@ public class CatalogueControl : MonoBehaviour
             {
                 currentFireStageText.text = "MAX";
                 //TODO Give narrative item and reset catalogue
+                GiveNarrativeItem();
+                currentFireStageText = fire1;
+                fireKillsRequired = 10;
             }
         }
 
@@ -127,6 +163,9 @@ public class CatalogueControl : MonoBehaviour
             {
                 currentWaterStageText.text = "MAX";
                 //TODO Give narrative item and reset catalogue
+                GiveNarrativeItem();
+                currentWaterStageText = water1;
+                waterKillsRequired = 10;
             }
         }
 
@@ -163,6 +202,9 @@ public class CatalogueControl : MonoBehaviour
             {
                 currentDarkStageText.text = "MAX";
                 //TODO Give narrative item and reset catalogue
+                GiveNarrativeItem();
+                currentDarkStageText = dark1;
+                darkKillsRequired = 10;
             }
         }
 
@@ -199,6 +241,9 @@ public class CatalogueControl : MonoBehaviour
             {
                 currentLightStageText.text = "MAX";
                 //TODO Give narrative item and reset catalogue
+                GiveNarrativeItem();
+                currentLightStageText = light1;
+                lightKillsRequired = 10;
             }
         }
 
@@ -235,6 +280,9 @@ public class CatalogueControl : MonoBehaviour
             {
                 currentWindStageText.text = "MAX";
                 //TODO Give narrative item and reset catalogue
+                GiveNarrativeItem();
+                currentWindStageText = wind1;
+                windKillsRequired = 10;
             }
         }
 
@@ -271,9 +319,57 @@ public class CatalogueControl : MonoBehaviour
             {
                 currentEarthStageText.text = "MAX";
                 //TODO Give narrative item and reset catalogue
+                GiveNarrativeItem();
+                currentEarthStageText = earth1;
+                earthKillsRequired = 10;
             }
         }
 
         currentEarthStageText.text = GameManager.instance.player.enemiesKilledByAbility[Element.Earth].ToString() + " / " + earthKillsRequired.ToString();
+    }
+
+    public void GiveNarrativeItem()
+    {
+        if (imageCounter.ContainsValue(0))
+        {
+            foreach (KeyValuePair<Image, int> image in imageCounter)
+            {
+                if (image.Value == 0)
+                {
+                    image.Key.sprite = sprites[0];
+                    sprites.Remove(sprites[0]);
+                    imageCounter[image.Key] += 1;
+                    image.Key.GetComponent<Button>().interactable = true;
+                    break;
+                }
+            }
+        }
+        else if (imageCounter.ContainsValue(1))
+        {
+            foreach (KeyValuePair<Image, int> image in imageCounter)
+            {
+                if (image.Value == 1)
+                {
+                    image.Key.GetComponentInChildren<PanelControl>(true).text2.gameObject.SetActive(true);
+                    imageCounter[image.Key] += 1;
+                    break;
+                }
+            }
+        }
+        else if (imageCounter.ContainsValue(2))
+        {
+            foreach (KeyValuePair<Image, int> image in imageCounter)
+            {
+                if (image.Value == 2)
+                {
+                    image.Key.GetComponentInChildren<PanelControl>().text3.gameObject.SetActive(true);
+                    imageCounter[image.Key] += 1;
+                }
+            }
+        }
+        else
+        {
+            //Finished the catalogue
+        }
     }
 }
